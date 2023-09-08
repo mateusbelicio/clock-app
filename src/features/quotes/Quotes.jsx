@@ -21,6 +21,7 @@ const StyledQuotes = styled.section`
   blockquote,
   p {
     max-width: 33.75rem;
+    width: 100%;
     font-size: var(--fs-xs);
     line-height: var(--lh-relaxed);
 

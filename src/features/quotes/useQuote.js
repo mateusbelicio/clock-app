@@ -1,6 +1,7 @@
+import { useFetch } from '@/hooks/useFetch';
 import { useEffect, useState } from 'react';
 
-const QUOTE_API_URL = 'https://api.quotable.io';
+const QUOTE_API_URL = 'https://api.quotable.io/quotes/random';
 
 const initialState = {
   text: '“The science of operations, as derived from mathematics more especially, is a science of itself, and has its own abstract truth and value.”',
@@ -9,32 +10,13 @@ const initialState = {
 
 export function useQuote() {
   const [quote, setQuote] = useState(initialState);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  async function getQuote() {
-    try {
-      setIsLoading(true);
-      setError('');
-
-      const res = await fetch(`${QUOTE_API_URL}/quotes/random`);
-      if (!res.ok)
-        throw new Error('Something went wrong. Please try again later.');
-
-      const [data] = await res.json();
-      setQuote({ text: data.content, author: data.author });
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  const updateQuote = () => getQuote();
+  const { data, loading, error, update } = useFetch(QUOTE_API_URL);
 
   useEffect(() => {
-    // getQuote();
-  }, []);
+    if (!data) return;
 
-  return { quote, isLoading, error, updateQuote };
+    setQuote({ text: data[0].content, author: data[0].author });
+  }, [data]);
+
+  return { quote, isLoading: loading, error, updateQuote: update };
 }
