@@ -6,13 +6,17 @@ import { breakpoint } from '@/styles/medias';
 import Icon from '@/ui/Icon';
 import Container from '@/ui/Container';
 
-const StyledQuotes = styled(Container)`
-  display: flex;
-  align-items: start;
-  gap: 1rem;
-
+const StyledQuotes = styled.section`
   margin-bottom: auto;
-  padding-bottom: 1rem;
+  padding: 2rem 1.5rem 1.5rem;
+
+  @media ${breakpoint('sm')} {
+    padding: 5rem 4rem 2rem;
+  }
+
+  @media ${breakpoint('xl')} {
+    padding: 3.5rem 0 2rem;
+  }
 
   blockquote,
   p {
@@ -33,24 +37,32 @@ const StyledQuotes = styled(Container)`
   }
 `;
 
+const StyledContainer = styled(Container)`
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+`;
+
 function Quotes() {
   const { quote, isLoading, error, updateQuote } = useQuote();
 
   return (
     <StyledQuotes>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {!isLoading && !error && (
-        <>
-          <blockquote>
-            <p>{quote.text}</p>
-            <span>{quote.author}</span>
-          </blockquote>
-        </>
-      )}
-      <button onClick={updateQuote}>
-        <Icon name="refresh" color="gray" hover="white" />
-      </button>
+      <StyledContainer>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+        {!isLoading && !error && (
+          <>
+            <blockquote>
+              <p>{quote.text}</p>
+              <span>{quote.author}</span>
+            </blockquote>
+          </>
+        )}
+        <button onClick={updateQuote}>
+          <Icon name="refresh" color="gray" hover="white" />
+        </button>
+      </StyledContainer>
     </StyledQuotes>
   );
 }
