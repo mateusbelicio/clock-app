@@ -15,13 +15,13 @@ const colors = {
 };
 
 const StyledIcon = styled.span`
-  font-size: ${({ size }) => size / 16}rem;
-  ${({ color }) => color && colors[color]};
-  ${({ hover }) =>
-    hover &&
+  font-size: ${({ $size }) => $size / 16}rem;
+  ${({ $color }) => $color && colors[$color]};
+  ${({ $hover }) =>
+    $hover &&
     css`
       &:hover {
-        ${colors[hover]};
+        ${colors[$hover]};
       }
     `}
 
@@ -35,7 +35,7 @@ const StyledIcon = styled.span`
 
 function Icon({ name, size = 16, hover, color }) {
   return (
-    <StyledIcon {...{ size, hover, color }}>
+    <StyledIcon $size={size} $hover={hover} $color={color}>
       <svg>
         <use xlinkHref={`${icons}#icon-${name}`} />
       </svg>
