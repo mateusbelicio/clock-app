@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
     --lh-none: 1;
     --lh-small: 1.2;
     --lh-normal: 1.5;
+    --lh-relaxed: 1.833333;
     --lh-medium: 1.75rem; /* 28px */
     --lh-large: 4.25rem; /* 68px */
 
@@ -36,7 +37,7 @@ const GlobalStyles = createGlobalStyle`
     --rgb-neutral-200: 230 230 230;
     --rgb-neutral-300: 216 216 216;
     --rgb-neutral-400: 163 163 163;
-    --rgb-neutral-500: 115 115 115;
+    --rgb-neutral-500: 112 112 112;
     --rgb-neutral-600: 82 82 82;
     --rgb-neutral-700: 64 64 64;
     --rgb-neutral-800: 48 48 48;
@@ -73,6 +74,13 @@ const GlobalStyles = createGlobalStyle`
   body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
+    line-height: 1.6;
+    font-family: var(--ff-sans);
+  }
+
+  #root {
+    overflow-x: hidden;
+    height: 100dvh;
   }
 
   p {
@@ -90,6 +98,18 @@ const GlobalStyles = createGlobalStyle`
   textarea,
   select {
     font: inherit;
+  }
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  body {
+    background-color: black;
+    color: white;
   }
 
   @media (prefers-reduced-motion: reduce) {
