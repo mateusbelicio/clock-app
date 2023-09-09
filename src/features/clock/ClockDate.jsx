@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { breakpoint } from '@/styles/medias';
 
 import Container from '@/ui/Container';
+import { useDateTime } from './useDateTime';
 
 const StyledDate = styled.section`
   padding-inline: 1.5rem;
@@ -113,25 +114,51 @@ const ListItem = styled.li`
 `;
 
 function Date() {
+  const { data, isLoading, error } = useDateTime();
+
   return (
     <StyledDate>
       <Container>
         <List>
           <ListItem>
             <h2>Current timezone</h2>
-            <p>Europe/London</p>
+            {error ? (
+              <p>&ndash;</p>
+            ) : isLoading ? (
+              <p>&thinsp;</p>
+            ) : (
+              <p>{data.timezone}</p>
+            )}
           </ListItem>
           <ListItem>
             <h2>Day of the year</h2>
-            <p>295</p>
+            {error ? (
+              <p>&ndash;</p>
+            ) : isLoading ? (
+              <p>&thinsp;</p>
+            ) : (
+              <p>{data.dayOfYear}</p>
+            )}
           </ListItem>
           <ListItem>
             <h2>Day of the week</h2>
-            <p>5</p>
+            {error ? (
+              <p>&ndash;</p>
+            ) : isLoading ? (
+              <p>&thinsp;</p>
+            ) : (
+              <p>{data.dayOfWeek + 1}</p>
+            )}
           </ListItem>
           <ListItem>
             <h2>Week number</h2>
-            <p>42</p>
+            {error ? (
+              <p>&ndash;</p>
+            ) : isLoading ? (
+              <p>&thinsp;</p>
+            ) : (
+              <p>{data.weekNumber}</p>
+            )}
           </ListItem>
         </List>
       </Container>
