@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 import { breakpoint } from '@/styles/medias';
+import { useDateTime } from './useDateTime';
 
 import Container from '@/ui/Container';
-import { useDateTime } from './useDateTime';
 
 const StyledDate = styled.section`
   padding-inline: 1.5rem;
@@ -147,7 +147,7 @@ function Date() {
             ) : isLoading ? (
               <p>&thinsp;</p>
             ) : (
-              <p>{data.dayOfWeek + 1}</p>
+              <p>{data.dayOfWeek}</p>
             )}
           </ListItem>
           <ListItem>
