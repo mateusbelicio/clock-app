@@ -1,22 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useFetch } from '@/hooks/useFetch';
 
-const WORLDTIME_API_URL = 'http://worldtimeapi.org/api/ip';
+import { getDatetime, getDayOfWeek, getDayOfYear, getWeek } from '@/utils/date';
 
-const today = new Date();
-const firstDayOfCurrentYear = new Date(today.getFullYear(), 0, 1);
-const dayOfYear =
-  Math.floor(
-    (today.getTime() - firstDayOfCurrentYear.getTime()) / 1000 / 60 / 60 / 24,
-  ) + 1;
+const WORLDTIME_API_URL = 'http://worldtimeapi.org/api/ip';
 
 const initialState = {
   abbreviation: 'BST',
   timezone: 'Europe/London',
-  dayOfWeek: today.getDay() + 1,
-  dayOfYear: dayOfYear,
-  weekNumber: Math.ceil(dayOfYear / 7),
-  datetime: today.toISOString(),
+  dayOfWeek: getDayOfWeek(),
+  dayOfYear: getDayOfYear(),
+  weekNumber: getWeek(),
+  datetime: getDatetime(),
 };
 
 export function useDateTime() {
@@ -34,7 +29,7 @@ export function useDateTime() {
       abbreviation: wolrdtimeData.abbreviation,
       timezone: wolrdtimeData.timezone,
       datetime: wolrdtimeData.datetime,
-      dayOfWeek: wolrdtimeData.day_of_week,
+      dayOfWeek: wolrdtimeData.day_of_week + 1,
       dayOfYear: wolrdtimeData.day_of_year,
       weekNumber: wolrdtimeData.week_number,
     });
