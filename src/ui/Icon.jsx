@@ -16,6 +16,9 @@ const colors = {
 
 const StyledIcon = styled.span`
   font-size: ${({ $size }) => $size / 16}rem;
+  line-height: var(--lh-none);
+  display: inline-block;
+  height: 1em;
   ${({ $color }) => $color && colors[$color]};
   ${({ $hover }) =>
     $hover &&
