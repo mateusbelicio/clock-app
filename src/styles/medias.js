@@ -3,7 +3,7 @@ export function breakpoint(size, maxWidth = false) {
     sm: 640,
     md: 768,
     lg: 940,
-    xl: 1158,
+    xl: 1238,
   };
 
   return maxWidth
