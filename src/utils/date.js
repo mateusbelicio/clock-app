@@ -25,8 +25,7 @@ export function getDayOfWeek() {
  * @returns {Number} a number representing the number of the current week of the year
  */
 export function getWeek() {
-  // TOCHECK
-  return Math.floor(getDayOfYear() / 7);
+  return Math.ceil(getDayOfYear() / 7);
 }
 
 /**
