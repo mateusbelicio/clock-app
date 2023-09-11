@@ -12,6 +12,9 @@ const colors = {
   black: css`
     color: var(--clr-neutral-950);
   `,
+  transparent: css`
+    color: rgba(var(--rgb-neutral-50) / 0.5);
+  `,
 };
 
 const StyledIcon = styled.span`

@@ -21,7 +21,6 @@ const StyledQuotes = styled.section`
   blockquote,
   p {
     max-width: 33.75rem;
-    width: 100%;
     font-size: var(--fs-xs);
     line-height: var(--lh-relaxed);
 
@@ -61,7 +60,7 @@ function Quotes() {
           </>
         )}
         <button onClick={updateQuote}>
-          <Icon name="refresh" color="gray" hover="white" />
+          <Icon name="refresh" color="transparent" hover="white" />
         </button>
       </StyledContainer>
     </StyledQuotes>
