@@ -48,7 +48,7 @@ const StyledBackground = styled.picture`
 
 function AppLayout({ children }) {
   const time = useClock();
-  const isDayTime = !isDay(time);
+  const isDayTime = isDay(time);
 
   return (
     <StyledAppLayout>
