@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { isDay } from '@/utils/time';
 import { breakpoint } from '@/styles/medias';
+import { useGeoLocation } from '@/hooks/useGeoLocation';
 import { useDateTime } from './useDateTime';
 import { useClock } from './useClock';
 
@@ -101,6 +102,7 @@ const Hours = styled.div`
 
 function ClockTime() {
   const time = useClock();
+  const location = useGeoLocation();
   const { data: date } = useDateTime();
 
   return (
@@ -116,7 +118,12 @@ function ClockTime() {
         <span>{time.slice(0, 5)}</span>
         <span>{date.abbreviation}</span>
       </Hours>
-      <span>in London, UK</span>
+
+      {location.city && (
+        <span>
+          in {location.city}, {location.country}
+        </span>
+      )}
     </StyledTime>
   );
 }

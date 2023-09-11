@@ -11,7 +11,6 @@ export function useGeoLocation() {
       try {
         const response = await ipBase.info();
         if (!response) throw new Error('Error fetching data.');
-        console.log(response);
 
         const city = response.data.location.city.name;
         const country = response.data.location.country.alpha2;
@@ -23,6 +22,7 @@ export function useGeoLocation() {
       }
     };
 
+    if (!import.meta.env.PROD) return;
     getIpInfo();
   }, []);
 
