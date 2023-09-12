@@ -1,16 +1,12 @@
-import { useEffect, useState } from 'react';
-import { formatTime } from '@/utils/time';
+import { useContext } from 'react';
+import { ClockContext } from './ClockContext';
 
 export function useClock() {
-  const [time, setTime] = useState(formatTime(new Date()));
-
-  useEffect(() => {
-    const intervalID = setInterval(() => {
-      setTime(formatTime(new Date()));
-    }, 1000);
-
-    return () => clearInterval(intervalID);
-  }, []);
+  const time = useContext(ClockContext);
+  if (!time)
+    throw new Error(
+      'The "useClock" custom hook must be only used inside "ClockProvider"',
+    );
 
   return time;
 }
