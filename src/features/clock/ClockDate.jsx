@@ -3,15 +3,21 @@ import { motion } from 'framer-motion';
 
 import { breakpoint } from '@/styles/medias';
 import { useDateTime } from './useDateTime';
+import { useClock } from './useClock';
 
 import Container from '@/ui/Container';
+import { isDay } from '@/utils/time';
 
 const StyledDate = styled(motion.section)`
   padding-inline: 1.5rem;
   padding-block: 3rem;
 
-  background-color: rgb(var(--rgb-neutral-950) / 0.75);
-  color: var(--clr-neutral-50);
+  background-color: ${({ $dark }) =>
+    `rgb(${
+      $dark ? 'var(--rgb-neutral-950)' : 'var(--rgb-neutral-50)'
+    } / 0.75)`};
+  color: ${({ $dark }) =>
+    $dark ? 'var(--clr-neutral-50)' : 'var(--clr-neutral-800)'};
   backdrop-filter: blur(40px);
 
   @media ${breakpoint('sm')} {
@@ -58,9 +64,13 @@ const List = styled.ul`
       width: 1px;
       height: 100%;
       opacity: 0.25;
-      background-color: var(--clr-neutral-50);
       grid-row: 1 / -1;
       grid-column: 7;
+
+      background-color: ${({ $dark }) =>
+        `rgb(${
+          $dark ? 'var(--rgb-neutral-50)' : 'var(--rgb-neutral-800)'
+        } / 0.25)`};
     }
   }
 `;
@@ -132,6 +142,7 @@ const infoVariants = {
 
 function Date() {
   const { data, isLoading, error } = useDateTime();
+  const time = useClock();
 
   return (
     <StyledDate
@@ -139,9 +150,10 @@ function Date() {
       variants={infoVariants}
       initial="hidden"
       animate="visible"
+      $dark={!isDay(time)}
     >
       <Container>
-        <List>
+        <List $dark={!isDay(time)}>
           <ListItem>
             <h2>Current timezone</h2>
             {error ? (
