@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { AnimatePresence } from 'framer-motion';
 
 import mobileDayTimeImage from '@/assets/images/mobile/bg-image-daytime.jpg';
 import mobileNightTimeImage from '@/assets/images/mobile/bg-image-nighttime.jpg';
@@ -52,21 +53,23 @@ function AppLayout({ children }) {
 
   return (
     <StyledAppLayout>
-      <StyledBackground>
-        <source
-          media="(min-width: 1024px)"
-          srcSet={isDayTime ? desktopDayTimeImage : desktopNightTimeImage}
-        />
-        <source
-          media="(min-width: 640px)"
-          srcSet={isDayTime ? tabletDayTimeImage : tabletNightTimeImage}
-        />
-        <img
-          src={isDayTime ? mobileDayTimeImage : mobileNightTimeImage}
-          alt="Background image of a beautiful landscape"
-        />
-      </StyledBackground>
-      {children}
+      <AnimatePresence>
+        <StyledBackground key="bg-image">
+          <source
+            media="(min-width: 1024px)"
+            srcSet={isDayTime ? desktopDayTimeImage : desktopNightTimeImage}
+          />
+          <source
+            media="(min-width: 640px)"
+            srcSet={isDayTime ? tabletDayTimeImage : tabletNightTimeImage}
+          />
+          <img
+            src={isDayTime ? mobileDayTimeImage : mobileNightTimeImage}
+            alt="Background image of a beautiful landscape"
+          />
+        </StyledBackground>
+        {children}
+      </AnimatePresence>
     </StyledAppLayout>
   );
 }

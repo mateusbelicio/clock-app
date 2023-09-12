@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import { breakpoint } from '@/styles/medias';
 import { useDateTime } from './useDateTime';
 
 import Container from '@/ui/Container';
 
-const StyledDate = styled.section`
+const StyledDate = styled(motion.section)`
   padding-inline: 1.5rem;
   padding-block: 3rem;
 
@@ -71,9 +72,9 @@ const ListItem = styled.li`
   gap: 1rem;
 
   font-size: var(--fs-2xs);
-  line-height: var(--lh-medium);
 
   @media ${breakpoint('sm')} {
+    line-height: var(--lh-medium);
     flex-direction: column;
     align-items: start;
     gap: 0;
@@ -113,11 +114,32 @@ const ListItem = styled.li`
   }
 `;
 
+const infoVariants = {
+  hidden: {
+    y: '100%',
+    opacity: 0,
+    transition: { duration: 0.3, delay: 0.3 },
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      type: 'tween',
+    },
+  },
+};
+
 function Date() {
   const { data, isLoading, error } = useDateTime();
 
   return (
-    <StyledDate>
+    <StyledDate
+      key="info"
+      variants={infoVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <Container>
         <List>
           <ListItem>

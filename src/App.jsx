@@ -11,6 +11,7 @@ function App() {
     <AppLayout>
       {!isOpenInfo && <Quotes />}
       <Clock
+        key="clock"
         isOpenInfo={isOpenInfo}
         toggleInfo={() => setIsOpenInfo((isOpen) => !isOpen)}
       />

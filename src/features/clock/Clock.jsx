@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { motion, useAnimationControls } from 'framer-motion';
 import styled from 'styled-components';
 
 import Container from '@/ui/Container';
@@ -7,7 +9,7 @@ import ClockDate from './ClockDate';
 
 import { breakpoint } from '@/styles/medias';
 
-const StyledClockTimeSection = styled.section`
+const StyledClockTimeSection = styled(motion.section)`
   padding-inline: 1.5rem;
   padding-block: 2.5rem;
 
@@ -39,10 +41,35 @@ const StyledClockTimeSection = styled.section`
   }
 `;
 
+const clockVariants = {
+  up: {
+    y: [200, 0],
+    transition: { duration: 0.3, type: 'tween' },
+  },
+  down: {
+    y: [-200, 0],
+    transition: { duration: 0.3, type: 'tween' },
+  },
+  idle: {
+    y: 0,
+  },
+};
+
 function Clock({ isOpenInfo, toggleInfo }) {
+  const clockAnimationControls = useAnimationControls();
+
+  useEffect(() => {
+    clockAnimationControls.start(isOpenInfo ? 'up' : 'down');
+  }, [isOpenInfo, clockAnimationControls]);
+
   return (
     <>
-      <StyledClockTimeSection>
+      <StyledClockTimeSection
+        variants={clockVariants}
+        initial="idle"
+        animate={clockAnimationControls}
+        key="clock-time"
+      >
         <Container>
           <ClockTime />
           <Button
