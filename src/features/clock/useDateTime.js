@@ -3,7 +3,7 @@ import { useFetch } from '@/hooks/useFetch';
 
 import { getDatetime, getDayOfWeek, getDayOfYear, getWeek } from '@/utils/date';
 
-const WORLDTIME_API_URL = 'http://worldtimeapi.org/api/ip';
+const WORLDTIME_API_URL = 'https://worldtimeapi.org/api/ip';
 
 const initialState = {
   abbreviation: 'BST',
