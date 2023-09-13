@@ -113,14 +113,14 @@ Error generating stack: `+o.message+`
   margin-inline: ${({$center:e})=>e?"auto":0};
 `;function gc({maxWidth:e=1110,center:t=!0,children:n,...r}){return R.jsx(uP,{$maxWidth:e,$center:t,...r,children:n})}const cP=xe($s.div)`
   margin-bottom: auto;
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 2rem 1.5rem 0.5rem;
 
   @media ${W("sm")} {
-    padding: 5rem 4rem 2rem;
+    padding: 5rem 4rem 0.5rem;
   }
 
   @media ${W("xl")} {
-    padding: 3.5rem 0 2rem;
+    padding: 3.5rem 0 0.5rem;
   }
 
   blockquote,
@@ -155,7 +155,7 @@ Error generating stack: `+o.message+`
   &:focus-visible {
     outline: 1px solid var(--clr-neutral-50);
   }
-`,pP={loading:{rotate:360,transition:{duration:1,repeat:1/0,ease:"linear"}},idle:{rotate:0}},hP={hidden:{y:"-100%",opacity:0,transition:{duration:.3,delay:.3}},visible:{y:0,opacity:1,transition:{duration:.3,type:"tween"}}};function mP(){const{quote:e,isLoading:t,error:n,updateQuote:r}=sP(),i=Zg();return T.useEffect(()=>{t?i.start("loading"):i.start("idle")},[t,i]),R.jsx(cP,{variants:hP,initial:"hidden",animate:"visible",children:R.jsxs(fP,{children:[n&&R.jsx("p",{children:n}),!t&&!n&&R.jsxs("blockquote",{children:[R.jsx("p",{children:e.text}),R.jsx("span",{children:e.author})]}),R.jsx(dP,{onClick:r,variants:pP,initial:"idle",animate:i,children:R.jsx(ls,{name:"refresh",color:"transparent",hover:"white"})})]})},"quote")}const gP=xe.button`
+`,pP={loading:{rotate:360,transition:{duration:1,repeat:1/0,ease:"linear"}},idle:{rotate:0}},hP={hidden:{y:"-100%",opacity:0,transition:{duration:.3,delay:.3}},visible:{y:0,opacity:1,transition:{duration:.3,type:"tween"}}};function mP(){const{quote:e,isLoading:t,error:n,updateQuote:r}=sP(),i=Zg();return T.useEffect(()=>{t?i.start("loading"):i.start("idle")},[t,i]),R.jsx(cP,{variants:hP,initial:"hidden",animate:"visible",children:R.jsxs(fP,{children:[n&&R.jsx("p",{children:n}),!t&&!n&&R.jsxs("blockquote",{children:[R.jsx("p",{children:e.text}),R.jsx("span",{children:e.author})]}),R.jsx(dP,{onClick:r,variants:pP,initial:"idle",animate:i,"aria-label":"refresh quote",children:R.jsx(ls,{name:"refresh",color:"transparent",hover:"white"})})]})},"quote")}const gP=xe.button`
   display: flex;
   align-items: center;
 
@@ -399,7 +399,7 @@ Error generating stack: `+o.message+`
   }
 `,VP={hidden:{y:"100%",opacity:0,transition:{duration:.3,delay:.3}},visible:{y:0,opacity:1,transition:{duration:.3,type:"tween"}}};function _P(){const{data:e,isLoading:t,error:n}=ey(),r=mc();return R.jsx(LP,{variants:VP,initial:"hidden",animate:"visible",$dark:!ki(r),children:R.jsx(gc,{children:R.jsxs(MP,{$dark:!ki(r),children:[R.jsxs(so,{children:[R.jsx("h2",{children:"Current timezone"}),n?R.jsx("p",{children:"–"}):t?R.jsx("p",{children:" "}):R.jsx("p",{children:e.timezone})]}),R.jsxs(so,{children:[R.jsx("h2",{children:"Day of the year"}),n?R.jsx("p",{children:"–"}):t?R.jsx("p",{children:" "}):R.jsx("p",{children:e.dayOfYear})]}),R.jsxs(so,{children:[R.jsx("h2",{children:"Day of the week"}),n?R.jsx("p",{children:"–"}):t?R.jsx("p",{children:" "}):R.jsx("p",{children:e.dayOfWeek})]}),R.jsxs(so,{children:[R.jsx("h2",{children:"Week number"}),n?R.jsx("p",{children:"–"}):t?R.jsx("p",{children:" "}):R.jsx("p",{children:e.weekNumber})]})]})})},"info")}const IP=xe($s.section)`
   padding-inline: 1.5rem;
-  padding-block: 2.5rem;
+  padding-bottom: 2.5rem;
 
   @media ${W("sm")} {
     padding-inline: 4rem;
@@ -499,7 +499,7 @@ Error generating stack: `+o.message+`
   }
 
   body {
-    height: 800px;
+    min-height: 100dvh;
     text-rendering: optimizeSpeed;
     line-height: 1.6;
     font-family: var(--ff-sans);
