@@ -11,7 +11,7 @@ import desktopNightTimeImage from '@/assets/images/desktop/bg-image-nighttime.jp
 import { isDay } from '@/utils/time';
 import { useClock } from '@/features/clock/useClock';
 
-const StyledAppLayout = styled.div`
+const StyledAppLayout = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: end;

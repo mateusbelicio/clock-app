@@ -72,7 +72,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    min-height: 100vh;
+    min-height: 100dvh;
     text-rendering: optimizeSpeed;
     line-height: 1.6;
     font-family: var(--ff-sans);

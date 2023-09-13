@@ -10,14 +10,14 @@ import Container from '@/ui/Container';
 
 const StyledQuotes = styled(motion.div)`
   margin-bottom: auto;
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 2rem 1.5rem 0.5rem;
 
   @media ${breakpoint('sm')} {
-    padding: 5rem 4rem 2rem;
+    padding: 5rem 4rem 0.5rem;
   }
 
   @media ${breakpoint('xl')} {
-    padding: 3.5rem 0 2rem;
+    padding: 3.5rem 0 0.5rem;
   }
 
   blockquote,
@@ -112,6 +112,7 @@ function Quotes() {
           variants={loadingVariants}
           initial="idle"
           animate={loadingAnimateControl}
+          aria-label="refresh quote"
         >
           <Icon name="refresh" color="transparent" hover="white" />
         </StyledButton>
