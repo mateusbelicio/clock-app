@@ -8,7 +8,7 @@ import { breakpoint } from '@/styles/medias';
 import Icon from '@/ui/Icon';
 import Container from '@/ui/Container';
 
-const StyledQuotes = styled(motion.div)`
+const StyledQuotes = styled(motion.section)`
   margin-bottom: auto;
   padding: 2rem 1.5rem 0.5rem;
 
@@ -23,6 +23,7 @@ const StyledQuotes = styled(motion.div)`
   blockquote,
   p {
     max-width: 33.75rem;
+    width: 100%;
     font-size: var(--fs-xs);
     line-height: var(--lh-relaxed);
 
@@ -76,10 +77,19 @@ const quotesVariants = {
     opacity: 0,
     transition: { duration: 0.3, delay: 0.3 },
   },
-  visible: {
+  idle: {
     y: 0,
-    opacity: 1,
+    opacity: [0, 0, 1],
     transition: { duration: 0.3, type: 'tween' },
+  },
+  loading: {
+    y: 0,
+    opacity: [0, 0, 0.25, 0.25, 0],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: 'linear',
+    },
   },
 };
 
@@ -88,25 +98,32 @@ function Quotes() {
   const loadingAnimateControl = useAnimationControls();
 
   useEffect(() => {
-    if (isLoading) loadingAnimateControl.start('loading');
+    if (isLoading || !quote) loadingAnimateControl.start('loading');
     else loadingAnimateControl.start('idle');
-  }, [isLoading, loadingAnimateControl]);
+  }, [isLoading, quote, loadingAnimateControl]);
 
   return (
     <StyledQuotes
       key="quote"
       variants={quotesVariants}
       initial="hidden"
-      animate="visible"
+      animate="idle"
     >
       <StyledContainer>
         {error && <p>{error}</p>}
-        {!isLoading && !error && (
-          <blockquote>
-            <p>{quote.text}</p>
-            <span>{quote.author}</span>
-          </blockquote>
-        )}
+        <motion.blockquote
+          variants={quotesVariants}
+          initial="hidden"
+          animate={loadingAnimateControl}
+        >
+          {isLoading && <p>Loading...</p>}
+          {!isLoading && !error && (
+            <>
+              <p>{quote.text}</p>
+              <span>{quote.author}</span>
+            </>
+          )}
+        </motion.blockquote>
         <StyledButton
           onClick={updateQuote}
           variants={loadingVariants}

@@ -42,7 +42,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledIcon = styled.div`
+const StyledIcon = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;

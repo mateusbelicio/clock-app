@@ -11,7 +11,7 @@ import { breakpoint } from '@/styles/medias';
 
 const StyledClockTimeSection = styled(motion.section)`
   padding-inline: 1.5rem;
-  padding-bottom: 2.5rem;
+  padding-block: 2.5rem;
 
   @media ${breakpoint('sm')} {
     padding-inline: 4rem;

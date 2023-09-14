@@ -33,12 +33,13 @@ const StyledTime = styled.div`
   }
 `;
 
-const Message = styled.p`
+const Message = styled.h2`
   display: flex;
   align-items: center;
   gap: 1rem;
 
   font-size: var(--fs-base);
+  font-weight: 400;
   line-height: var(--lh-normal);
   letter-spacing: var(--spacing-small);
   text-transform: uppercase;
